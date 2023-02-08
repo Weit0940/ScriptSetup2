@@ -1,4 +1,6 @@
 
+%test stima dell'energia del fascio su una singola acquisizione
+
 import Functions/.*;
 addpath 'Functions';
 
