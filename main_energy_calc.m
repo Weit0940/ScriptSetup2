@@ -16,6 +16,7 @@ for j = 1:1:4
     [row, col] = size(c2.y2);
     delay = zeros(col - 1, 1);
     en = zeros(col - 1, 1);
+    cross = zeros(col -1, 1);
 
     for i = 1:1:(col - 1)
 
@@ -30,7 +31,8 @@ for j = 1:1:4
 
         [c,lags] = xcorr(c2_y_filt, c3_y_filt, 'normalized');
         [r, k] = max(c);
-
+        
+        cross(i) = r;
         d = abs( delta * lags(k));
         delay(i) = d;
 
