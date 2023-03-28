@@ -4,15 +4,12 @@
 import Functions/.*;
 addpath 'Functions';
 
-file_sign1 = "../Run16/C2.mat";
-file_sign2 = "../Run16/C3.mat";
+file_sign1 = "../Run15/C2.mat";
+file_sign2 = "../Run15/C3.mat";
 
-th1 = 0.6;
-th2 = 0.1;
-
-i = 2;
+i = 13;
 s = 1;
-n = 40000;
+n = 20000;
 
 c2 = open(file_sign1);
 c2_x = c2.x2(s:n, i);
@@ -46,18 +43,18 @@ delta_run = c2_x(1) - c3_x(1);
 % figure
 % plot(f, c3_y_ft)
 
-figure
+hold on
 c3_y_filt = signal_filter(c3_x, c3_y, 499975);
 plot(c3_x, c3_y_filt)
 % findpeaks(c3_y_filt, c3_x, 'MinPeakProminence', th1, 'MinPeakHeight', th2);
 % [c3_pks] = findpeaks(c3_y_filt, c3_x, 'MinPeakProminence', th1, 'MinPeakHeight', th2);
-
 figure
 [c,lags] = xcorr(c2_y_filt, c3_y_filt, 'normalized');
-stem(lags,c)
+plot(lags * delta1,c, '-o')
+
 
 [r, i] = max(c);
-delay = abs((delta1 + delta_run) * lags(i));
+delay = abs(delta1 * lags(i));
 
 tr_delay = 1.6944e-10;
 

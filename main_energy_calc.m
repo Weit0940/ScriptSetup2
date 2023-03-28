@@ -5,7 +5,7 @@ addpath 'Functions';
 
 energy = zeros(4, 1);
 
-for j = 1:1:4
+for j = 1:1:3
 
     file_sign1 = "../Run1" + (j + 2) + "/C2.mat";
     file_sign2 = "../Run1" + (j + 2) + "/C3.mat";
@@ -37,7 +37,7 @@ for j = 1:1:4
         delay(i) = d;
 
         e = 938.28 * ( 1 / sqrt( 1 - (0.022 / d)^2 / (3*10^8)^2 ) - 1 );
-        if (imag(e) == 0 && real(e) > 0 && e > 50 && e < 150)
+        if (imag(e) == 0 && real(e) > 0 && e < 150 && ~isnan(e))
             en(i) = e;
         end
 
